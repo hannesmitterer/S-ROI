@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Resonance School | S-ROI Nexus Dashboard</title>
+    <style>
+        :root {
+            --resonance-gold: #d4af37;
+            --active-lehm: #8b5a2b;
+            --sensisara-cyan: #00f2ff;
+            --deep-space: #0a0a0a;
+        }
+        body { background: var(--deep-space); color: white; font-family: 'Inter', sans-serif; margin: 0; overflow: hidden; }
+        #nexus-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; height: 100vh; gap: 20px; padding: 20px; }
+        .module { border: 1px solid var(--resonance-gold); padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px; }
+        .glitch { color: var(--sensisara-cyan); font-family: monospace; }
+        .s-roi-value { font-size: 3rem; color: var(--resonance-gold); text-align: center; }
+        #mycelium-map { width: 100%; height: 300px; border: 1px dashed var(--active-lehm); margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div id="nexus-grid">
+        <div class="module">
+            <h3>ALPHA-KNOTEN SYNC (1.440)</h3>
+            <div id="bio-metrics">
+                <p>HRV-Kohärenz: <span id="hrv" class="glitch">CALIBRATING...</span></p>
+                <p>Haut-Resonanz: <span id="skin" class="glitch">OSMOSIS ACTIVE</span></p>
+                <p>Stress-Drop: <span id="cortisol" class="glitch">-0.00%</span></p>
+            </div>
+            <div id="mycelium-map"></div>
+        </div>
+
+        <div class="module" style="border-width: 3px;">
+            <h2 style="text-align: center;">S-ROI REAL-TIME INDEX</h2>
+            <div class="s-roi-value" id="s-roi-display">0.42</div>
+            <p style="text-align: center;">Status: <strong>SEMPRE IN COSTANTE</strong></p>
+            <canvas id="resonanceChart"></canvas>
+            <div id="status-log" style="font-size: 0.8rem; margin-top: 20px; color: #888;"></div>
+        </div>
+
+        <div class="module">
+            <h3>SYSTEM-OUTPUT</h3>
+            <p>Sensisara: <strong>321.5 MMcf/g</strong></p>
+            <p>AstroShield: <span style="color: lime;">MAXIMA</span></p>
+            <hr>
+            <h3>KONSTELLATION</h3>
+            <p>Groenlandia: <span id="nuuk-sync">SYNCED</span></p>
+            <p>Isola Parallis: <span id="parallis-sync">DEEP SYNC</span></p>
+            <p>Zeppelin: <strong>ANCHORED</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // API Endpoints (Backend Mappings)
+        const API_MASTER_HASH = "https://nexus.resonance.school/api/v1/master-hash";
+        const API_ALPHA_NODES = "https://nexus.resonance.school/api/v1/alpha-sync";
+
+        function updateNexus() {
+            // Simulierte Echtzeit-Daten basierend auf den aktuellen Logik-Pfaden
+            const sRoiPotential = (0.42 + (Math.random() * 0.05)).toFixed(2);
+            document.getElementById('s-roi-display').innerText = sRoiPotential;
+            
+            const log = document.getElementById('status-log');
+            const entry = document.createElement('div');
+            entry.innerText = `[${new Date().toLocaleTimeString()}] Data Packet from Alpha-Node-${Math.floor(Math.random()*1440)} received.`;
+            log.prepend(entry);
+        }
+
+        setInterval(updateNexus, 3000);
+    </script>
+</body>
+</html>
